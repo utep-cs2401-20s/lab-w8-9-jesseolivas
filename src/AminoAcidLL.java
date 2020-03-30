@@ -94,6 +94,9 @@ class AminoAcidLL{
   /* Recursive method that finds the differences in **Amino Acid** counts. 
    * the list *must* be sorted to use this method */
   public int aminoAcidCompare(AminoAcidLL inList){
+    if(inList.next == null){
+      
+    }
     return 0;
   }
 
@@ -108,16 +111,37 @@ class AminoAcidLL{
   /********************************************************************************************/
   /* Recursively returns the total list of amino acids in the order that they are in in the linked list. */
   public char[] aminoAcidList(){
+    // base, if next is null
+
     if(next == null){
       return new char[aminoAcid];
     }
-    return new char[]{};
+    // recursion, when next is not null
+
+    char[] a = next.aminoAcidList();
+    char[] ret = new char[a.length+1];
+    //ret[0] =
+    for(int i = 0; i < ret.length; i ++){
+
+    }
+    return ret;
   }
 
   /********************************************************************************************/
   /* Recursively returns the total counts of amino acids in the order that they are in in the linked list. */
   public int[] aminoAcidCounts(){
-    return new int[]{};
+    // base, if next is null
+    if(next == null){
+      return new int[totalCount()];
+    }
+    // recursion, when next is not null
+    int[] a = next.aminoAcidCounts();
+    int[] ret = new int[a.length+1];
+    //ret[0] =
+    for(int i = 1; i < ret.length; i++){
+
+    }
+    return ret;
   }
 
 
