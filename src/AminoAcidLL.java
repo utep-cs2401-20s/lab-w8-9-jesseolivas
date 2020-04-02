@@ -16,16 +16,22 @@ class AminoAcidLL{
   AminoAcidLL(String inCodon){
     aminoAcid = AminoAcidResources.getAminoAcidFromCodon(inCodon);
     codons = AminoAcidResources.getCodonListForAminoAcid(aminoAcid);
-
+    counts = new int[codons.length];
     // Counts how many codons made this specific amino acid
     incrementCodons(inCodon);
     next = null;
 
   }
 
+  // Traverse through the codons and if they're the same,
+  // increment at that index
   private void incrementCodons(String c){
-    // traverse through the codons and if they're the same,
-    // increment at that index
+    for (int i = 0; i < codons.length; i++){
+      if(codons[i].equals(c)){
+        counts[i]++;
+      }
+    }
+
   }
   /********************************************************************************************/
   /* Recursive method that increments the count for a specific codon:
