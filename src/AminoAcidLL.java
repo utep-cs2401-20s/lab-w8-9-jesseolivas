@@ -40,16 +40,10 @@ class AminoAcidLL{
    * If there is no next node, add a new node to the list that would contain the codon. 
    */
   private void addCodon(String inCodon){
-
-    // base cases
-    // FIX ME: needs base case that adds to the list
     // if this node had this codon, increment count at that codon
-
     if(aminoAcid == AminoAcidResources.getAminoAcidFromCodon(inCodon)){
       incrementCodons(inCodon);
     }
-
-    // recursive case
 
     else {
       if (next != null) {
@@ -61,9 +55,6 @@ class AminoAcidLL{
 
       }
     }
-
-    // increment to the next node
-  
   }
 
 
@@ -100,17 +91,42 @@ class AminoAcidLL{
   /* Recursive method that finds the differences in **Amino Acid** counts. 
    * the list *must* be sorted to use this method */
   public int aminoAcidCompare(AminoAcidLL inList){
-    if(inList.next == null){
-      
+    // First sort the list
+    inList = sort(inList);
+
+    // Once both are at their end, you're done and return
+    if(inList.next == null && next == null){
+      return codonDiff(inList);
     }
-    return 0;
+    else if(next == null){
+      return inList.totalCount() + aminoAcidCompare(inList);
+    }
+    else if(inList.next == null){
+      return totalCount() + next.aminoAcidCompare(inList);
+    }
+    // Go to the next comparison
+    return totalDiff(inList) + next.aminoAcidCompare(inList.next);
   }
 
   /********************************************************************************************/
   /* Same as above, but counts the codon usage differences
    * Must be sorted. */
   public int codonCompare(AminoAcidLL inList){
-    return 0;
+    // First sort the list
+    inList = sort(inList);
+
+    // Once both are at their end, you're done and return
+    if(inList.next == null && next == null){
+      return codonDiff(inList);
+    }
+    else if(next == null){
+      return inList.totalCount() + codonCompare(inList);
+    }
+    else if(inList.next == null){
+      return totalCount() + next.codonCompare(inList);
+    }
+    // Go to the next comparison
+    return totalDiff(inList) + next.codonCompare(inList.next);
   }
 
 
