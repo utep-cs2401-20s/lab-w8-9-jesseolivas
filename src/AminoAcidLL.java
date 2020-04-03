@@ -134,19 +134,19 @@ class AminoAcidLL{
   /* Recursively returns the total list of amino acids in the order that they are in in the linked list. */
   public char[] aminoAcidList(){
     // base, if next is null
-
     if(next == null){
       return new char[aminoAcid];
     }
+
     // recursion, when next is not null
-
     char[] a = next.aminoAcidList();
-    char[] ret = new char[a.length+1];
-    //ret[0] =
-    for(int i = 0; i < ret.length; i ++){
-
+    char[] ret = new char[a.length + 1];
+    ret[0] = aminoAcid;
+    for (int i = 1; i < ret.length; i++) {
+      ret[i] = a[i];
     }
     return ret;
+
   }
 
   /********************************************************************************************/
