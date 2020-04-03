@@ -142,7 +142,7 @@ class AminoAcidLL{
     char[] a = next.aminoAcidList();
     char[] ret = new char[a.length + 1];
     ret[0] = aminoAcid;
-    for (int i = 1; i < ret.length; i++) {
+    for (int i = 1; i < a.length; i++) {
       ret[i] = a[i];
     }
 
@@ -162,7 +162,7 @@ class AminoAcidLL{
     int[] a = next.aminoAcidCounts();
     int[] ret = new int[a.length+1];
     ret[0] = totalCount();
-    for(int i = 1; i < ret.length; i++){
+    for(int i = 1; i < a.length; i++){
       ret[i] = a[i];
     }
 
