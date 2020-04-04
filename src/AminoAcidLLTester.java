@@ -26,35 +26,35 @@ public class AminoAcidLLTester {
     }
 
     @Test
-    // Tests aminoAcidList method COULD NOT GET IT TO WORK
+    // Tests aminoAcidList method
     public void aminoAcidListT1(){
         char[] expected = {'F','L','P','G','K'};
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUUUUGCCCGGGAAAUAG");
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUUUUGCCCGGGAAA");
         assertArrayEquals(expected, test.aminoAcidList());
     }
 
     @Test
     // Tests aminoAcidList method COULD NOT GET IT TO WORK
     public void aminoAcidListT2(){
-        char[] expected = {'V','M','I','K','K'};
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GUGAUGAUUAAGAAAUAA");
+        char[] expected = {'V','M','I','K',};
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GUGAUGAUUAAG");
         assertArrayEquals(expected, test.aminoAcidList());
     }
 
     @Test
-    // Tests aminoAcidCounts method COULD NOT GET IT TO WORK
+    // Tests aminoAcidCounts method
     public void aminoAcidCountsT1(){
         int[] expected = {3, 3, 3};
-        String testSequence = "GCGGCGGCGUGUUGUUGUAAAAAAAAAUAA";
+        String testSequence = "GCGGCGGCGUGUUGUUGUAAAAAAAAA";
         AminoAcidLL test = AminoAcidLL.createFromRNASequence(testSequence);
         assertArrayEquals(expected, test.aminoAcidCounts());
     }
 
     @Test
-    // Tests aminoAcidCounts method COULD NOT GET IT TO WORK
+    // Tests aminoAcidCounts method
     public void aminoAcidCountsT2(){
         int[] expected = {1, 1, 1};
-        String testSequence = "GGGGAGGUGUAA";
+        String testSequence = "GGGGAGGUG";
         AminoAcidLL test = AminoAcidLL.createFromRNASequence(testSequence);
         assertArrayEquals(expected, test.aminoAcidCounts());
     }

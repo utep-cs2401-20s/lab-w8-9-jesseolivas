@@ -180,15 +180,15 @@ class AminoAcidLL{
   public char[] aminoAcidList(){
     // base, if next is null
     if(next == null){
-      return new char[aminoAcid];
+      return new char[]{aminoAcid};
     }
 
     // recursion, when next is not null
     char[] a = next.aminoAcidList();
     char[] ret = new char[a.length + 1];
     ret[0] = aminoAcid;
-    for (int i = 1; i < a.length; i++) {
-      ret[i] = a[i];
+    for (int i = 0; i < a.length; i++) {
+      ret[i+1] = a[i];
     }
 
     // Return the array of chars holding the amino acid list
@@ -200,15 +200,15 @@ class AminoAcidLL{
   public int[] aminoAcidCounts(){
     // base, if next is null
     if(next == null){
-      return new int[totalCount()];
+      return new int[]{totalCount()};
     }
 
     // recursion, when next is not null
     int[] a = next.aminoAcidCounts();
     int[] ret = new int[a.length+1];
     ret[0] = totalCount();
-    for(int i = 1; i < a.length; i++){
-      ret[i] = a[i];
+    for(int i = 0; i < a.length; i++){
+      ret[i+1] = a[i];
     }
 
     // Return the array of int holding the total counts
