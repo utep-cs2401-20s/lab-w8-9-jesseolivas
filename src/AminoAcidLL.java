@@ -88,45 +88,90 @@ class AminoAcidLL{
   }
 
   /********************************************************************************************/
+  // Added this to help with both compare methods
+  public int sum(AminoAcidLL a){
+    AminoAcidLL temp = a;
+    int sum = 0;
+
+    while(temp  != null){
+      sum += temp.totalCount();
+      temp = temp.next;
+    }
+
+    System.out.println("SUM" + sum);
+    return sum;
+  }
   /* Recursive method that finds the differences in **Amino Acid** counts. 
    * the list *must* be sorted to use this method */
   public int aminoAcidCompare(AminoAcidLL inList){
-    // First sort the list
-    inList = sort(inList);
-
-    // Once both are at their end, you're done and return
+    // Once they're at the end, you're done and return value
     if(inList.next == null && next == null){
-      return codonDiff(inList);
+      if(aminoAcid == inList.aminoAcid) {
+        return totalDiff(inList);
+      }
+      return inList.totalCount() + totalCount();
     }
-    else if(next == null){
-      return inList.totalCount() + aminoAcidCompare(inList);
+
+    if(aminoAcid == inList.aminoAcid){
+
+      // If next is null add inList sum to totalDiff
+      if(next == null) {
+        return totalDiff(inList) + sum(inList.next);
+      }
+
+      // If inlist is null add next sum to totalDiff
+      if(inList.next == null) {
+        return totalDiff(inList) + sum(next);
+      }
+
+      // If neither, recursive call with next inList
+      return totalDiff(inList) + next.aminoAcidCompare(inList.next);
     }
-    else if(inList.next == null){
+
+    if(this.next != null && aminoAcid < inList.aminoAcid){
+
+      // If aminoAcid is less than inList
       return totalCount() + next.aminoAcidCompare(inList);
     }
-    // Go to the next comparison
-    return totalDiff(inList) + next.aminoAcidCompare(inList.next);
+
+    // If none of the above, recursive call with next inList
+    return inList.totalCount() + aminoAcidCompare(inList.next);
   }
 
   /********************************************************************************************/
   /* Same as above, but counts the codon usage differences
    * Must be sorted. */
   public int codonCompare(AminoAcidLL inList){
-    // First sort the list
-    inList = sort(inList);
-
-    // Once both are at their end, you're done and return
+    // Once they're at the end, you're done and return value
     if(inList.next == null && next == null){
-      return codonDiff(inList);
+      if(aminoAcid == inList.aminoAcid) {
+        return totalDiff(inList);
+      }
+      return inList.totalCount() + totalCount();
     }
-    else if(next == null){
-      return inList.totalCount() + codonCompare(inList);
+    if(aminoAcid == inList.aminoAcid){
+
+      // If next is null add inList sum to codonDiff
+      if(next == null) {
+        return codonDiff(inList) + sum(inList.next);
+      }
+
+      // If inlist is null add next sum to codonDiff
+      if(inList.next == null) {
+        return codonDiff(inList) + sum(next);
+      }
+
+      // If neither, recursive call with next inList
+      return codonDiff(inList) + next.codonCompare(inList.next);
     }
-    else if(inList.next == null){
+    if(next != null && aminoAcid < inList.aminoAcid){
+
+      // If aminoAcid is less than inList
       return totalCount() + next.codonCompare(inList);
     }
-    // Go to the next comparison
-    return totalDiff(inList) + next.codonCompare(inList.next);
+
+    // If none of the above, recursive call with next inList
+    return inList.totalCount() + codonCompare(inList.next);
   }
 
 

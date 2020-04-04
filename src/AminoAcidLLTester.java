@@ -6,37 +6,23 @@ import org.junit.jupiter.api.Test;
 public class AminoAcidLLTester {
 
     @Test
-    // Tests isSorted method with an unsorted list
-    public void isSortedT1(){
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GUGGUAAUGAUAAUACUGUUUUUCUCGUAA");
-        assertEquals(false, test.isSorted());
+    // Tests aminoAcidCompare method
+    public void aminoAcidCompareT1(){
+        AminoAcidLL a = AminoAcidLL.createFromRNASequence("GAGGAGACCACCUGCGACUAG");
+        AminoAcidLL b = AminoAcidLL.createFromRNASequence("GGUGGUGAGGAGGAGACCACCUAG");
+        a = AminoAcidLL.sort(a);
+        b = AminoAcidLL.sort(b);
+        assertEquals(7, a.aminoAcidCompare(b));
     }
 
     @Test
-    // Tests isSorted method with a sorted list
-    public void isSortedT2(){
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GCGGCAUGUGACGAUGAAUUUGGGGGC");
-        assertEquals(true, test.isSorted());
-    }
-
-    @Test
-    // Tests sort method by passing through sort and then checks if it worked by passing through
-    // isSorted method for easier testing
-    public void sortT1(){
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUUUUUUUGUUACUUAUGAUACAGCAAUAA");
-        test = AminoAcidLL.sort(test);
-        assertEquals(true, test.isSorted());
-
-    }
-
-    @Test
-    // Tests sort method by passing through sort and then checks if it worked by passing through
-    // isSorted method for easier testing but with a one codon sequence
-    public void sortT2(){
-        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUU");
-        test = AminoAcidLL.sort(test);
-        assertEquals(true, test.isSorted());
-
+    // Tests codonCompare method
+    public void codonCompareT1(){
+        AminoAcidLL a = AminoAcidLL.createFromRNASequence("GGGGAGUAG");
+        AminoAcidLL b = AminoAcidLL.createFromRNASequence("GGAGGCGAAUAG");
+        a = AminoAcidLL.sort(a);
+        b = AminoAcidLL.sort(b);
+        assertEquals(5, a.codonCompare(b));
     }
 
     @Test
@@ -74,6 +60,40 @@ public class AminoAcidLLTester {
     }
 
     @Test
+    // Tests isSorted method with an unsorted list
+    public void isSortedT1(){
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GUGGUAAUGAUAAUACUGUUUUUCUCGUAA");
+        assertEquals(false, test.isSorted());
+    }
+
+    @Test
+    // Tests isSorted method with a sorted list
+    public void isSortedT2(){
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("GCGGCAUGUGACGAUGAAUUUGGGGGC");
+        assertEquals(true, test.isSorted());
+    }
+
+    @Test
+    // Tests sort method by passing through sort and then checks if it worked by passing through
+    // isSorted method for easier testing
+    public void sortT1(){
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUUUUUUUGUUACUUAUGAUACAGCAAUAA");
+        test = AminoAcidLL.sort(test);
+        assertEquals(true, test.isSorted());
+
+    }
+
+    @Test
+    // Tests sort method by passing through sort and then checks if it worked by passing through
+    // isSorted method for easier testing but with a one codon sequence
+    public void sortT2(){
+        AminoAcidLL test = AminoAcidLL.createFromRNASequence("UUU");
+        test = AminoAcidLL.sort(test);
+        assertEquals(true, test.isSorted());
+
+    }
+
+    @Test
     // Tests createFromRNASequence to see if it works
     public void createFromRNASequenceT1(){
         String expected = "PQRVWST";
@@ -94,6 +114,8 @@ public class AminoAcidLLTester {
             test = test.next;
         }
     }
+
+
 
 
 }
